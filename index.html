@@ -127,7 +127,7 @@
     display:flex;align-items:center;justify-content:space-between;
     padding:16px 24px;
   }
-  .nav-left{display:flex;align-items:center;gap:40px;}
+  .nav-left{display:flex;align-items:center;gap:28px;}
   .logo{
     display:flex;align-items:center;gap:10px;
     font-family:'Poppins',sans-serif;
@@ -144,7 +144,7 @@
     margin-left:-10px;
     white-space:nowrap;
   }
-  nav.main-nav ul{display:flex;gap:32px;align-items:center;}
+  nav.main-nav ul{display:flex;gap:22px;align-items:center;}
   nav.main-nav a{
     font-weight:600;font-size:.95rem;color:var(--navy-900);
     transition:color .2s;
@@ -211,6 +211,33 @@
   .section-head{max-width:640px;margin-bottom:50px;}
   .section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
   .section-head h2{font-size:2.6rem;color:var(--navy-900);}
+
+  /* Vehicle Locator */
+  .lookup{background:var(--white);}
+  .lookup-intro{color:var(--gray);max-width:640px;margin:14px auto 0;}
+  .lookup-box{
+    max-width:900px;margin:0 auto;
+    background:var(--off-white);
+    border:1px solid var(--light-gray);
+    border-radius:12px;
+    padding:28px;
+    box-shadow:0 6px 24px rgba(21,17,15,.06);
+    text-align:center;
+  }
+  .lookup-frame-wrap{
+    border:1px solid var(--light-gray);
+    border-radius:8px;
+    overflow:hidden;
+    background:var(--white);
+  }
+  .lookup-frame-wrap iframe{width:100%;height:600px;border:0;display:block;}
+  .lookup-fallback{margin-top:22px;padding-top:22px;border-top:1px solid var(--light-gray);}
+  .lookup-fallback p{color:var(--gray);font-size:.9rem;margin-bottom:14px;}
+  .lookup-fallback.lookup-emphasize p{color:var(--navy-900);font-weight:600;}
+  .lookup-fallback.lookup-emphasize{
+    background:#fff7ec;border:1px solid var(--orange);border-radius:8px;
+    padding:20px;margin-top:20px;
+  }
 
   /* Services */
   .services{background:var(--off-white);}
@@ -455,6 +482,8 @@
     .stats .container{grid-template-columns:1fr 1fr;}
     .testi-arrow{display:none;}
     .testi-card{padding:30px 24px;}
+    .lookup-box{padding:18px;}
+    .lookup-frame-wrap iframe{height:480px;}
     .topbar .container{justify-content:center;text-align:center;}
     section{padding:60px 0;}
     .hero{padding:70px 0 60px;}
@@ -487,10 +516,9 @@
       <nav class="main-nav" id="mainNav">
         <ul>
           <li><a href="#top">Home</a></li>
-          <li><a href="#about">About</a></li>
+          <li><a href="#lookup">Vehicle Locator</a></li>
           <li><a href="#services">Services</a></li>
           <li><a href="#area">Service Area</a></li>
-          <li><a href="#reviews">Reviews</a></li>
           <li><a href="#careers">Careers</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
@@ -533,6 +561,28 @@
     <div class="item"><i class="fa-solid fa-people-carry-box"></i> Locally Owned &amp; Operated</div>
   </div>
 </div>
+
+<!-- Vehicle Locator -->
+<section class="lookup" id="lookup">
+  <div class="container">
+    <div class="section-head center">
+      <div class="eyebrow" style="justify-content:center;">Vehicle Locator</div>
+      <h2>Find Your Towed Vehicle</h2>
+      <p class="lookup-intro">If your vehicle was towed or impounded, use our secure vehicle locator below to check its status instantly.</p>
+    </div>
+    <div class="lookup-box">
+      <div class="lookup-frame-wrap" id="lookupFrameWrap">
+        <iframe id="lookupFrame" src="https://nktowing.towbook.net" title="NK Towing Vehicle Locator" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <div class="lookup-fallback">
+        <p id="lookupFallbackText">Prefer a full-page view?</p>
+        <a href="https://nktowing.towbook.net" target="_blank" rel="noopener" class="btn btn-orange" id="lookupFallbackBtn">
+          <i class="fa-solid fa-magnifying-glass"></i> Open Vehicle Locator
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- Services -->
 <section class="services" id="services">
@@ -898,7 +948,7 @@
       <h4>Quick Links</h4>
       <ul>
         <li><a href="#top">Home</a></li>
-        <li><a href="#about">About</a></li>
+        <li><a href="#lookup">Vehicle Locator</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#careers">Careers</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -1016,6 +1066,32 @@
     }
   } catch (testiErr) {
     console.error('Testimonial carousel error:', testiErr);
+  }
+
+  // Vehicle Locator iframe: best-effort fallback emphasis.
+  // Note: there is no reliable cross-browser way to detect an X-Frame-Options
+  // block from JS, so the "Open Vehicle Locator" button/link is ALWAYS shown
+  // regardless of this check - this just highlights it if the frame seems stuck.
+  try {
+    var lookupFrame = document.getElementById('lookupFrame');
+    var lookupFallback = document.querySelector('.lookup-fallback');
+    var lookupFallbackText = document.getElementById('lookupFallbackText');
+    if (lookupFrame && lookupFallback) {
+      var lookupLoaded = false;
+      lookupFrame.addEventListener('load', function () {
+        lookupLoaded = true;
+      });
+      setTimeout(function () {
+        if (!lookupLoaded) {
+          lookupFallback.classList.add('lookup-emphasize');
+          if (lookupFallbackText) {
+            lookupFallbackText.textContent = "Having trouble viewing the locator above? Open it directly here:";
+          }
+        }
+      }, 4000);
+    }
+  } catch (lookupErr) {
+    console.error('Vehicle locator check error:', lookupErr);
   }
 
   // Contact form -> emails NK Towing via FormSubmit (no backend needed)
