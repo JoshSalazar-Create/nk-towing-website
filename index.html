@@ -162,7 +162,13 @@
   }
   .header-phone .num{font-size:1.05rem;color:var(--navy-900);}
   .header-phone small{display:block;font-size:.7rem;color:var(--gray);font-weight:500;text-transform:uppercase;}
-  .menu-toggle{display:none;background:none;border:none;font-size:1.5rem;color:var(--navy-900);cursor:pointer;}
+  .menu-toggle{
+    display:none;background:var(--navy-900);border:none;color:var(--white);
+    width:42px;height:42px;border-radius:50%;
+    align-items:center;justify-content:center;
+    font-size:1.15rem;cursor:pointer;
+    position:relative;z-index:201;flex-shrink:0;
+  }
 
   /* Hero */
   .hero{
@@ -474,7 +480,7 @@
     nav.main-nav.open{right:0;}
     nav.main-nav ul{flex-direction:column;align-items:flex-start;gap:22px;}
     nav.main-nav a{color:var(--white);font-size:1.1rem;}
-    .menu-toggle{display:block;}
+    .menu-toggle{display:flex;}
     .header-phone{display:none;}
     .services-grid{grid-template-columns:1fr;}
     .gallery-grid{grid-template-columns:repeat(2,1fr);}
@@ -704,8 +710,8 @@
         <div class="gallery-caption">Heavy-duty semi recovery</div>
       </div>
       <div class="gallery-item">
-        <img src="nk-gallery-lowboy.jpg" alt="NK Towing tractor hauling a lowboy trailer with heavy equipment">
-        <div class="gallery-caption">Lowboy &amp; equipment transport</div>
+        <img src="nk-gallery-lowboy.jpg" alt="NK Towing tractor hauling a Landoll trailer with heavy equipment">
+        <div class="gallery-caption">Landoll &amp; equipment transport</div>
       </div>
       <div class="gallery-item">
         <img src="nk-gallery-accident.jpg" alt="NK Towing flatbed hauling an accident-damaged truck and SUV">
