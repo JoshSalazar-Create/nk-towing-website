@@ -51,6 +51,7 @@
     --navy-700:#4a3f37;
     --orange:#f4791c;
     --orange-dark:#c65f0f;
+    --orange-deep:#b35415;
     --red:#d9291c;
     --gold:#f9b233;
     --white:#ffffff;
@@ -87,12 +88,12 @@
     cursor:pointer;
     border:2px solid transparent;
   }
-  .btn-orange{background:linear-gradient(90deg,var(--red),var(--orange) 60%,var(--gold));color:var(--white);}
+  .btn-orange{background:linear-gradient(90deg,var(--red),var(--orange-deep));color:var(--white);}
   .btn-orange:hover{filter:brightness(0.92);}
   .btn-outline{border-color:var(--white);color:var(--white);}
   .btn-outline:hover{background:var(--white);color:var(--navy-900);}
   .eyebrow{
-    color:var(--orange);
+    color:var(--orange-deep);
     font-weight:700;
     font-size:.8rem;
     letter-spacing:2px;
@@ -114,8 +115,16 @@
     display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;
   }
   .topbar a{color:var(--orange);font-weight:600;}
-  .topbar .topbar-right{display:flex;gap:20px;flex-wrap:wrap;}
+  .topbar .topbar-right{display:flex;gap:20px;flex-wrap:wrap;align-items:center;}
   .topbar i{color:var(--orange);margin-right:6px;}
+  .lang-switch{display:flex;gap:4px;}
+  .lang-btn{
+    background:transparent;border:1px solid rgba(255,255,255,.35);color:var(--light-gray);
+    font-size:.75rem;font-weight:700;padding:3px 9px;border-radius:4px;cursor:pointer;
+    letter-spacing:.5px;transition:background .2s ease,color .2s ease,border-color .2s ease;
+  }
+  .lang-btn.active{background:var(--orange-deep);color:var(--white);border-color:var(--orange-deep);}
+  .lang-btn:hover{border-color:var(--orange);}
 
   /* Header */
   header{
@@ -275,7 +284,7 @@
   .why-us > .container > div:last-child p.lead{color:var(--gray);margin-bottom:30px;}
   .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:30px;}
   .feature{display:flex;gap:14px;}
-  .feature i{color:var(--orange);font-size:1.3rem;margin-top:2px;}
+  .feature i{color:var(--orange-deep);font-size:1.3rem;margin-top:2px;}
   .feature h4{font-size:1.05rem;color:var(--navy-900);text-transform:none;margin-bottom:4px;}
   .feature p{font-size:.88rem;color:var(--gray);}
   .call-box{
@@ -284,7 +293,7 @@
     display:flex;align-items:center;gap:18px;
   }
   .call-box .icon-circle{
-    background:var(--orange);width:50px;height:50px;border-radius:50%;
+    background:var(--orange-deep);width:50px;height:50px;border-radius:50%;
     display:flex;align-items:center;justify-content:center;flex-shrink:0;
   }
   .call-box small{display:block;color:#aab1cb;font-size:.75rem;text-transform:uppercase;letter-spacing:1px;}
@@ -311,8 +320,8 @@
     padding:10px 18px;border-radius:30px;
     font-weight:600;font-size:.9rem;color:var(--navy-900);
   }
-  .area-pills span.active{background:var(--orange);color:var(--white);border-color:var(--orange);}
-  .area-pills i{color:var(--orange);font-size:.8rem;}
+  .area-pills span.active{background:var(--orange-deep);color:var(--white);border-color:var(--orange-deep);}
+  .area-pills i{color:var(--orange-deep);font-size:.8rem;}
   .area-pills span.active i{color:var(--white);}
   .area-map{
     border:1px solid var(--light-gray);
@@ -370,16 +379,26 @@
     transition:background .2s ease,color .2s ease,border-color .2s ease;
     z-index:3;
   }
-  .testi-arrow:hover{background:var(--orange);color:var(--white);border-color:var(--orange);}
+  .testi-arrow:hover,.testi-arrow:focus-visible{background:var(--orange-deep);color:var(--white);border-color:var(--orange-deep);}
   .testi-prev{left:-22px;}
   .testi-next{right:-22px;}
   .testi-dots{display:flex;justify-content:center;gap:10px;margin-top:28px;}
   .testi-dot{
     width:10px;height:10px;border-radius:50%;
-    background:var(--light-gray);border:none;cursor:pointer;padding:0;
+    background:var(--gray);border:none;cursor:pointer;padding:0;
     transition:background .2s ease,transform .2s ease;
   }
-  .testi-dot.active{background:var(--orange);transform:scale(1.2);}
+  .testi-dot.active{background:var(--orange-deep);transform:scale(1.2);}
+  .testi-controls{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:28px;}
+  .testi-controls .testi-dots{margin-top:0;}
+  .testi-pause{
+    width:34px;height:34px;border-radius:50%;flex-shrink:0;
+    background:var(--white);border:1px solid var(--light-gray);
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;color:var(--navy-900);font-size:.8rem;
+    transition:background .2s ease,color .2s ease,border-color .2s ease;
+  }
+  .testi-pause:hover,.testi-pause:focus-visible{background:var(--orange-deep);color:var(--white);border-color:var(--orange-deep);}
 
   /* CTA banner */
   .cta-banner{
@@ -461,6 +480,19 @@
     padding:24px 0;font-size:.82rem;
   }
 
+  .skip-link{
+    position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;
+    background:var(--navy-900);color:var(--white);
+    padding:14px 22px;border-radius:0 0 6px 0;font-weight:700;z-index:9999;
+  }
+  .skip-link:focus{
+    left:0;top:0;width:auto;height:auto;overflow:visible;
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .testi-track{transition:none;}
+    .gallery-item img{transition:none;}
+  }
   @media(max-width:960px){
     .header-slogan{display:none;}
     .why-us .container,.area .container,.contact .container{grid-template-columns:1fr;}
@@ -499,14 +531,20 @@
 </head>
 <body>
 
+<a href="#main" class="skip-link" data-i18n-es="Saltar al contenido principal">Skip to main content</a>
+
 <!-- Top bar -->
 <div class="topbar">
   <div class="container">
-    <div><i class="fa-solid fa-location-dot"></i>Proudly serving Oceanside, Vista &amp; North San Diego County</div>
+    <div data-i18n-es='<i class="fa-solid fa-location-dot"></i>Con orgullo servimos a Oceanside, Vista y el norte del condado de San Diego'><i class="fa-solid fa-location-dot"></i>Proudly serving Oceanside, Vista &amp; North San Diego County</div>
     <div class="topbar-right">
-      <span><i class="fa-solid fa-clock"></i>Dispatch Available 24/7</span>
-      <a href="tel:+17607229262"><i class="fa-solid fa-phone"></i>Dispatch: (760) 722-9262</a>
-      <a href="tel:+17602315092"><i class="fa-solid fa-warehouse"></i>Oceanside Impound: (760) 231-5092</a>
+      <span data-i18n-es='<i class="fa-solid fa-clock"></i>Despacho disponible las 24 horas'><i class="fa-solid fa-clock"></i>Dispatch Available 24/7</span>
+      <a href="tel:+17607229262" data-i18n-es='<i class="fa-solid fa-phone"></i>Despacho: (760) 722-9262'><i class="fa-solid fa-phone"></i>Dispatch: (760) 722-9262</a>
+      <a href="tel:+17602315092" data-i18n-es='<i class="fa-solid fa-warehouse"></i>Corralón de Oceanside: (760) 231-5092'><i class="fa-solid fa-warehouse"></i>Oceanside Impound: (760) 231-5092</a>
+      <div class="lang-switch" role="group" aria-label="Language selection / Selección de idioma">
+        <button type="button" id="langEnBtn" class="lang-btn active" aria-pressed="true">EN</button>
+        <button type="button" id="langEsBtn" class="lang-btn" aria-pressed="false">ES</button>
+      </div>
     </div>
   </div>
 </div>
@@ -516,17 +554,18 @@
   <div class="nav-wrap container">
     <div class="nav-left">
       <a href="#top" class="logo">
-        <img src="nk-logo.png" alt="NK Towing - Oceanside & Vista, CA">
+        <img src="nk-logo.png" alt="NK Towing - Oceanside & Vista, CA" data-i18n-es-alt="NK Towing - Oceanside y Vista, CA">
       </a>
-      <span class="header-slogan">Get Hooked On Us</span>
+      <span class="header-slogan" data-i18n-es="Engánchate Con Nosotros">Get Hooked On Us</span>
       <nav class="main-nav" id="mainNav">
         <ul>
-          <li><a href="#top">Home</a></li>
-          <li><a href="#lookup">Vehicle Locator</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#area">Service Area</a></li>
-          <li><a href="#careers">Careers</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#top" data-i18n-es="Inicio">Home</a></li>
+          <li><a href="#lookup" data-i18n-es="Localizador de Vehículos">Vehicle Locator</a></li>
+          <li><a href="#services" data-i18n-es="Servicios">Services</a></li>
+          <li><a href="#area" data-i18n-es="Área de Servicio">Service Area</a></li>
+          <li><a href="#careers" data-i18n-es="Empleos">Careers</a></li>
+          <li><a href="https://nk-driver-standings.pages.dev" target="_blank" rel="noopener" data-i18n-es="Clasificación de Choferes">Driver Standings</a></li>
+          <li><a href="#contact" data-i18n-es="Contacto">Contact</a></li>
         </ul>
       </nav>
     </div>
@@ -534,37 +573,38 @@
       <div class="header-phone">
         <span class="icon-circle"><i class="fa-solid fa-phone"></i></span>
         <div>
-          <small>Call for dispatch</small>
+          <small data-i18n-es="Llama a despacho">Call for dispatch</small>
           <span class="num">(760) 722-9262</span>
         </div>
       </div>
-      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" data-i18n-es-aria-label="Abrir o cerrar menú"><i class="fa-solid fa-bars"></i></button>
     </div>
   </div>
 </header>
 
+<main id="main">
 <!-- Hero -->
 <section class="hero" id="top">
   <div class="container hero-inner">
-    <div class="eyebrow" style="color:var(--orange);">24/7 Emergency Towing &amp; Roadside Assistance</div>
-    <h1><em>Get Hooked On Us</em></h1>
-    <p>NK Towing is Oceanside's locally owned towing and recovery company. Fast dispatch, upfront pricing, and friendly professionals — day or night, rain or shine.</p>
+    <div class="eyebrow" style="color:var(--orange);" data-i18n-es="Grúa de Emergencia y Asistencia Vial las 24 Horas">24/7 Emergency Towing &amp; Roadside Assistance</div>
+    <h1><em data-i18n-es="Engánchate Con Nosotros">Get Hooked On Us</em></h1>
+    <p data-i18n-es="NK Towing es la compañía de grúas y rescate vehicular de Oceanside, de dueños locales. Despacho rápido, precios claros desde el principio y profesionales amables — de día o de noche, llueva o truene.">NK Towing is Oceanside's locally owned towing and recovery company. Fast dispatch, upfront pricing, and friendly professionals — day or night, rain or shine.</p>
     <div class="hero-btns">
-      <a href="tel:+17607229262" class="btn btn-orange"><i class="fa-solid fa-phone"></i> Call Now For Dispatch</a>
-      <a href="#contact" class="btn btn-outline"><i class="fa-solid fa-file-lines"></i> Get a Free Quote</a>
+      <a href="tel:+17607229262" class="btn btn-orange" data-i18n-es='<i class="fa-solid fa-phone"></i> Llama Ahora a Despacho'><i class="fa-solid fa-phone"></i> Call Now For Dispatch</a>
+      <a href="#contact" class="btn btn-outline" data-i18n-es='<i class="fa-solid fa-file-lines"></i> Pide una Cotización Gratis'><i class="fa-solid fa-file-lines"></i> Get a Free Quote</a>
     </div>
     <div class="hero-badges">
-      <div class="badge"><i class="fa-solid fa-clock"></i> 24/7 Dispatch</div>
-      <div class="badge"><i class="fa-solid fa-shield-halved"></i> Licensed &amp; Insured</div>
-      <div class="badge"><i class="fa-solid fa-bolt"></i> 30-Min Avg. Response</div>
+      <div class="badge" data-i18n-es='<i class="fa-solid fa-clock"></i> Despacho 24/7'><i class="fa-solid fa-clock"></i> 24/7 Dispatch</div>
+      <div class="badge" data-i18n-es='<i class="fa-solid fa-shield-halved"></i> Con Licencia y Seguro'><i class="fa-solid fa-shield-halved"></i> Licensed &amp; Insured</div>
+      <div class="badge" data-i18n-es='<i class="fa-solid fa-bolt"></i> Respuesta Promedio en 30 Min'><i class="fa-solid fa-bolt"></i> 30-Min Avg. Response</div>
     </div>
   </div>
 </section>
 
 <div class="trust-strip">
   <div class="container">
-    <div class="item"><i class="fa-solid fa-award"></i> 15+ Years Serving North San Diego County</div>
-    <div class="item"><i class="fa-solid fa-people-carry-box"></i> Locally Owned &amp; Operated</div>
+    <div class="item" data-i18n-es='<i class="fa-solid fa-award"></i> Más de 15 Años Sirviendo al Norte del Condado de San Diego'><i class="fa-solid fa-award"></i> 15+ Years Serving North San Diego County</div>
+    <div class="item" data-i18n-es='<i class="fa-solid fa-people-carry-box"></i> Negocio Local, Familiar'><i class="fa-solid fa-people-carry-box"></i> Locally Owned &amp; Operated</div>
   </div>
 </div>
 
@@ -572,17 +612,17 @@
 <section class="lookup" id="lookup">
   <div class="container">
     <div class="section-head center">
-      <div class="eyebrow" style="justify-content:center;">Vehicle Locator</div>
-      <h2>Find Your Towed Vehicle</h2>
-      <p class="lookup-intro">If your vehicle was towed or impounded, use our secure vehicle locator below to check its status instantly.</p>
+      <div class="eyebrow" style="justify-content:center;" data-i18n-es="Localizador de Vehículos">Vehicle Locator</div>
+      <h2 data-i18n-es="Encuentra Tu Vehículo Remolcado">Find Your Towed Vehicle</h2>
+      <p class="lookup-intro" data-i18n-es="Si tu vehículo fue remolcado o llevado al corralón, usa nuestro localizador seguro aquí abajo para checar su estado al instante.">If your vehicle was towed or impounded, use our secure vehicle locator below to check its status instantly.</p>
     </div>
     <div class="lookup-box">
       <div class="lookup-frame-wrap" id="lookupFrameWrap">
-        <iframe id="lookupFrame" src="https://nktowing.towbook.net" title="NK Towing Vehicle Locator" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe id="lookupFrame" src="https://nktowing.towbook.net" title="NK Towing Vehicle Locator" data-i18n-es-title="Localizador de Vehículos de NK Towing" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
       <div class="lookup-fallback">
-        <p id="lookupFallbackText">Prefer a full-page view?</p>
-        <a href="https://nktowing.towbook.net" target="_blank" rel="noopener" class="btn btn-orange" id="lookupFallbackBtn">
+        <p id="lookupFallbackText" data-i18n-es="¿Prefieres verlo en pantalla completa?">Prefer a full-page view?</p>
+        <a href="https://nktowing.towbook.net" target="_blank" rel="noopener" class="btn btn-orange" id="lookupFallbackBtn" data-i18n-es='<i class="fa-solid fa-magnifying-glass"></i> Abrir Localizador de Vehículos'>
           <i class="fa-solid fa-magnifying-glass"></i> Open Vehicle Locator
         </a>
       </div>
@@ -594,39 +634,39 @@
 <section class="services" id="services">
   <div class="container">
     <div class="section-head center">
-      <div class="eyebrow" style="justify-content:center;">Our Services</div>
-      <h2>Premium Towing &amp; Roadside Services</h2>
+      <div class="eyebrow" style="justify-content:center;" data-i18n-es="Nuestros Servicios">Our Services</div>
+      <h2 data-i18n-es="Servicios Premium de Grúa y Asistencia Vial">Premium Towing &amp; Roadside Services</h2>
     </div>
     <div class="services-grid">
       <div class="service-card">
         <div class="icon"><i class="fa-solid fa-truck-ramp-box"></i></div>
-        <h3>Light, Medium &amp; Heavy-Duty Towing</h3>
-        <p>From sedans to semis, our fleet includes a 35-ton heavy-duty wrecker ready for the toughest jobs.</p>
+        <h3 data-i18n-es="Grúas Ligeras, Medianas y de Servicio Pesado">Light, Medium &amp; Heavy-Duty Towing</h3>
+        <p data-i18n-es="Desde sedanes hasta tráileres, nuestra flotilla incluye una grúa pesada de 35 toneladas lista para los trabajos más difíciles.">From sedans to semis, our fleet includes a 35-ton heavy-duty wrecker ready for the toughest jobs.</p>
       </div>
       <div class="service-card">
         <div class="icon"><i class="fa-solid fa-road"></i></div>
-        <h3>Roadside Assistance</h3>
-        <p>Flat tire changes, jump starts, and lockouts — we get you moving again without the wait.</p>
+        <h3 data-i18n-es="Asistencia Vial">Roadside Assistance</h3>
+        <p data-i18n-es="Cambio de llantas ponchadas, paso de corriente y apertura de autos — te ayudamos a seguir tu camino sin esperar.">Flat tire changes, jump starts, and lockouts — we get you moving again without the wait.</p>
       </div>
       <div class="service-card">
         <div class="icon"><i class="fa-solid fa-anchor"></i></div>
-        <h3>Winch-Outs, Recovery &amp; Equipment Transport</h3>
-        <p>Stuck in sand, mud, or a ditch? We also haul heavy equipment and machinery with our Landoll trailer.</p>
+        <h3 data-i18n-es="Rescate con Malacate, Recuperación y Transporte de Equipo">Winch-Outs, Recovery &amp; Equipment Transport</h3>
+        <p data-i18n-es="¿Atascado en arena, lodo o una zanja? También transportamos equipo pesado y maquinaria con nuestro tráiler Landoll.">Stuck in sand, mud, or a ditch? We also haul heavy equipment and machinery with our Landoll trailer.</p>
       </div>
       <div class="service-card">
         <div class="icon"><i class="fa-solid fa-gas-pump"></i></div>
-        <h3>Fuel Delivery</h3>
-        <p>Ran out of gas? We'll bring enough fuel to get you to the nearest station.</p>
+        <h3 data-i18n-es="Entrega de Combustible">Fuel Delivery</h3>
+        <p data-i18n-es="¿Se te acabó la gasolina? Te llevamos suficiente combustible para llegar a la gasolinera más cercana.">Ran out of gas? We'll bring enough fuel to get you to the nearest station.</p>
       </div>
       <div class="service-card">
         <div class="icon"><i class="fa-solid fa-key"></i></div>
-        <h3>Lockout Service</h3>
-        <p>Locked your keys inside? Our techs can safely get you back into your vehicle in minutes.</p>
+        <h3 data-i18n-es="Servicio de Apertura de Autos">Lockout Service</h3>
+        <p data-i18n-es="¿Dejaste las llaves adentro? Nuestros técnicos te ayudan a entrar de nuevo a tu vehículo en minutos, sin dañarlo.">Locked your keys inside? Our techs can safely get you back into your vehicle in minutes.</p>
       </div>
       <div class="service-card">
         <div class="icon"><i class="fa-solid fa-car-burst"></i></div>
-        <h3>Accident &amp; Recovery Towing</h3>
-        <p>Careful, professional towing after a collision, coordinated directly with your insurer if needed.</p>
+        <h3 data-i18n-es="Grúa Para Accidentes y Recuperación">Accident &amp; Recovery Towing</h3>
+        <p data-i18n-es="Servicio de grúa cuidadoso y profesional después de un choque, coordinado directamente con tu aseguradora si es necesario.">Careful, professional towing after a collision, coordinated directly with your insurer if needed.</p>
       </div>
     </div>
   </div>
@@ -636,46 +676,46 @@
 <section class="why-us" id="about">
   <div class="container">
     <div>
-      <img src="nk-why-us.jpg" alt="NK Towing heavy-duty wrecker parked inside the Oceanside Fire Department station">
+      <img src="nk-why-us.jpg" alt="NK Towing heavy-duty wrecker parked inside the Oceanside Fire Department station" data-i18n-es-alt="Grúa pesada de NK Towing estacionada dentro de la estación de bomberos de Oceanside">
     </div>
     <div>
-      <div class="eyebrow">Why Choose Us</div>
-      <h2>The Towing Company Oceanside Trusts</h2>
-      <p class="lead">We're a local, family-run towing company — not a call center routing you to strangers. When you call NK Towing, a real dispatcher answers and a nearby driver is sent your way.</p>
+      <div class="eyebrow" data-i18n-es="Por Qué Elegirnos">Why Choose Us</div>
+      <h2 data-i18n-es="La Compañía de Grúas en la Que Oceanside Confía">The Towing Company Oceanside Trusts</h2>
+      <p class="lead" data-i18n-es="Somos una compañía de grúas local y familiar, no un centro de llamadas que te conecta con desconocidos. Cuando llamas a NK Towing, te contesta un despachador de verdad y te mandamos al chofer más cercano.">We're a local, family-run towing company — not a call center routing you to strangers. When you call NK Towing, a real dispatcher answers and a nearby driver is sent your way.</p>
       <div class="feature-list">
         <div class="feature">
           <i class="fa-solid fa-stopwatch"></i>
           <div>
-            <h4>30-Minute Average Response</h4>
-            <p>Drivers positioned across Oceanside to minimize your wait.</p>
+            <h4 data-i18n-es="Respuesta Promedio en 30 Minutos">30-Minute Average Response</h4>
+            <p data-i18n-es="Choferes ubicados por todo Oceanside para que esperes lo menos posible.">Drivers positioned across Oceanside to minimize your wait.</p>
           </div>
         </div>
         <div class="feature">
           <i class="fa-solid fa-headset"></i>
           <div>
-            <h4>Live 24/7 Dispatch</h4>
-            <p>A real person answers, day or night — no voicemail.</p>
+            <h4 data-i18n-es="Despacho en Vivo las 24 Horas">Live 24/7 Dispatch</h4>
+            <p data-i18n-es="Te contesta una persona real, de día o de noche — nada de buzón de voz.">A real person answers, day or night — no voicemail.</p>
           </div>
         </div>
         <div class="feature">
           <i class="fa-solid fa-house-flag"></i>
           <div>
-            <h4>Locally Owned &amp; Operated</h4>
-            <p>Vista-based, not a national broker service.</p>
+            <h4 data-i18n-es="Negocio Local, de Dueños de la Comunidad">Locally Owned &amp; Operated</h4>
+            <p data-i18n-es="Con base en Vista, no somos un intermediario nacional.">Vista-based, not a national broker service.</p>
           </div>
         </div>
         <div class="feature">
           <i class="fa-solid fa-tag"></i>
           <div>
-            <h4>Upfront, Transparent Pricing</h4>
-            <p>We quote your rate before dispatch and stick to it.</p>
+            <h4 data-i18n-es="Precios Claros Desde el Principio">Upfront, Transparent Pricing</h4>
+            <p data-i18n-es="Te damos tu cotización antes de mandar la grúa y la respetamos.">We quote your rate before dispatch and stick to it.</p>
           </div>
         </div>
       </div>
       <div class="call-box">
         <span class="icon-circle"><i class="fa-solid fa-phone"></i></span>
         <div>
-          <small>24/7 Emergency Towing</small>
+          <small data-i18n-es="Grúa de Emergencia las 24 Horas">24/7 Emergency Towing</small>
           <span class="num">(760) 722-9262</span>
         </div>
       </div>
@@ -686,10 +726,10 @@
 <!-- Stats -->
 <section class="stats">
   <div class="container">
-    <div class="stat"><h3>15+</h3><p>Years of Experience</p></div>
-    <div class="stat"><h3>24/7</h3><p>Emergency Dispatch</p></div>
-    <div class="stat"><h3>30 min</h3><p>Average Response Time</p></div>
-    <div class="stat"><h3>100%</h3><p>Licensed &amp; Insured</p></div>
+    <div class="stat"><h3>15+</h3><p data-i18n-es="Años de Experiencia">Years of Experience</p></div>
+    <div class="stat"><h3>24/7</h3><p data-i18n-es="Despacho de Emergencia">Emergency Dispatch</p></div>
+    <div class="stat"><h3 data-i18n-es="30 min">30 min</h3><p data-i18n-es="Tiempo Promedio de Respuesta">Average Response Time</p></div>
+    <div class="stat"><h3>100%</h3><p data-i18n-es="Con Licencia y Seguro">Licensed &amp; Insured</p></div>
   </div>
 </section>
 
@@ -697,29 +737,29 @@
 <section class="gallery">
   <div class="container">
     <div class="section-head center">
-      <div class="eyebrow" style="justify-content:center;">Our Fleet</div>
-      <h2>NK Towing In Action</h2>
+      <div class="eyebrow" style="justify-content:center;" data-i18n-es="Nuestra Flotilla">Our Fleet</div>
+      <h2 data-i18n-es="NK Towing En Acción">NK Towing In Action</h2>
     </div>
     <div class="gallery-grid">
       <div class="gallery-item">
-        <img src="nk-gallery-rv.jpg" alt="NK Towing rollback towing a motorhome in Oceanside">
-        <div class="gallery-caption">Motorhome recovery &amp; tow</div>
+        <img src="nk-gallery-rv.jpg" alt="NK Towing rollback towing a motorhome in Oceanside" data-i18n-es-alt="Grúa de plataforma de NK Towing remolcando una casa rodante en Oceanside">
+        <div class="gallery-caption" data-i18n-es="Recuperación y remolque de casa rodante">Motorhome recovery &amp; tow</div>
       </div>
       <div class="gallery-item">
-        <img src="nk-gallery-semi.jpg" alt="NK Towing heavy-duty wrecker recovering a semi-truck near Coast Hwy">
-        <div class="gallery-caption">Heavy-duty semi recovery</div>
+        <img src="nk-gallery-semi.jpg" alt="NK Towing heavy-duty wrecker recovering a semi-truck near Coast Hwy" data-i18n-es-alt="Grúa pesada de NK Towing recuperando un tráiler cerca de Coast Hwy">
+        <div class="gallery-caption" data-i18n-es="Recuperación de tráiler pesado">Heavy-duty semi recovery</div>
       </div>
       <div class="gallery-item">
-        <img src="nk-gallery-lowboy.jpg" alt="NK Towing tractor hauling a Landoll trailer with heavy equipment">
-        <div class="gallery-caption">Landoll &amp; equipment transport</div>
+        <img src="nk-gallery-lowboy.jpg" alt="NK Towing tractor hauling a Landoll trailer with heavy equipment" data-i18n-es-alt="Tractocamión de NK Towing transportando un tráiler Landoll con equipo pesado">
+        <div class="gallery-caption" data-i18n-es="Transporte de Landoll y equipo">Landoll &amp; equipment transport</div>
       </div>
       <div class="gallery-item">
-        <img src="nk-gallery-accident.jpg" alt="NK Towing flatbed hauling an accident-damaged truck and SUV">
-        <div class="gallery-caption">Multi-vehicle accident tow</div>
+        <img src="nk-gallery-accident.jpg" alt="NK Towing flatbed hauling an accident-damaged truck and SUV" data-i18n-es-alt="Plataforma de NK Towing transportando una camioneta y un SUV dañados en un accidente">
+        <div class="gallery-caption" data-i18n-es="Remolque de accidente con varios vehículos">Multi-vehicle accident tow</div>
       </div>
       <div class="gallery-item">
-        <img src="nk-gallery-flatbed2.jpg" alt="NK Towing flatbed hauling a utility truck">
-        <div class="gallery-caption">Flatbed &amp; utility truck transport</div>
+        <img src="nk-gallery-flatbed2.jpg" alt="NK Towing flatbed hauling a utility truck" data-i18n-es-alt="Plataforma de NK Towing transportando un camión de servicios">
+        <div class="gallery-caption" data-i18n-es="Transporte en plataforma de camión de servicios">Flatbed &amp; utility truck transport</div>
       </div>
     </div>
   </div>
@@ -728,9 +768,9 @@
 <!-- CTA banner -->
 <section class="cta-banner">
   <div class="container">
-    <h2>Stranded in Oceanside? We're On Our Way.</h2>
-    <p>No job too big or small — from a flat tire to a full recovery, NK Towing is one call away, any hour of the day.</p>
-    <a href="tel:+17607229262" class="btn btn-orange"><i class="fa-solid fa-phone"></i> Call (760) 722-9262</a>
+    <h2 data-i18n-es="¿Varado en Oceanside? Ya Vamos en Camino.">Stranded in Oceanside? We're On Our Way.</h2>
+    <p data-i18n-es="Ningún trabajo es demasiado grande o pequeño — desde una llanta ponchada hasta una recuperación completa, NK Towing está a una llamada de distancia, a cualquier hora del día.">No job too big or small — from a flat tire to a full recovery, NK Towing is one call away, any hour of the day.</p>
+    <a href="tel:+17607229262" class="btn btn-orange" data-i18n-es='<i class="fa-solid fa-phone"></i> Llama al (760) 722-9262'><i class="fa-solid fa-phone"></i> Call (760) 722-9262</a>
   </div>
 </section>
 
@@ -738,21 +778,21 @@
 <section class="area" id="area">
   <div class="container">
     <div>
-      <div class="eyebrow">Service Area</div>
-      <h2>Proudly Serving Oceanside &amp; North San Diego County</h2>
-      <p class="lead">NK Towing proudly serves Oceanside and the surrounding communities — including San Marcos, Vista, Carlsbad, Camp Pendleton, and up to the Orange County line. Don't see your area listed? Give us a call — we may still be able to help.</p>
+      <div class="eyebrow" data-i18n-es="Área de Servicio">Service Area</div>
+      <h2 data-i18n-es="Sirviendo con Orgullo a Oceanside y el Norte del Condado de San Diego">Proudly Serving Oceanside &amp; North San Diego County</h2>
+      <p class="lead" data-i18n-es="NK Towing sirve con orgullo a Oceanside y las comunidades cercanas — incluyendo San Marcos, Vista, Carlsbad, Camp Pendleton y hasta el límite con el condado de Orange. ¿No ves tu área en la lista? Llámanos — es posible que igual podamos ayudarte.">NK Towing proudly serves Oceanside and the surrounding communities — including San Marcos, Vista, Carlsbad, Camp Pendleton, and up to the Orange County line. Don't see your area listed? Give us a call — we may still be able to help.</p>
       <div class="area-pills">
         <span class="active"><i class="fa-solid fa-location-dot"></i>Oceanside</span>
         <span><i class="fa-solid fa-location-dot"></i>San Marcos</span>
         <span><i class="fa-solid fa-location-dot"></i>Vista</span>
         <span><i class="fa-solid fa-location-dot"></i>Camp Pendleton</span>
         <span><i class="fa-solid fa-location-dot"></i>Carlsbad</span>
-        <span><i class="fa-solid fa-location-dot"></i>Up to the Orange County line</span>
+        <span data-i18n-es='<i class="fa-solid fa-location-dot"></i>Hasta el Límite con el Condado de Orange'><i class="fa-solid fa-location-dot"></i>Up to the Orange County line</span>
       </div>
-      <a href="#contact" class="btn btn-orange">Check Your Area</a>
+      <a href="#contact" class="btn btn-orange" data-i18n-es="Consulta Tu Área">Check Your Area</a>
     </div>
     <div class="area-map">
-      <img src="nk-pier.jpg" alt="NK Towing truck parked near the Oceanside Pier">
+      <img src="nk-pier.jpg" alt="NK Towing truck parked near the Oceanside Pier" data-i18n-es-alt="Camión de NK Towing estacionado cerca del muelle de Oceanside">
     </div>
   </div>
 </section>
@@ -761,58 +801,61 @@
 <section class="testimonials" id="reviews">
   <div class="container">
     <div class="section-head center">
-      <div class="eyebrow" style="justify-content:center;">Testimonials</div>
-      <h2>Real Reviews From Real Drivers</h2>
+      <div class="eyebrow" style="justify-content:center;" data-i18n-es="Testimonios">Testimonials</div>
+      <h2 data-i18n-es="Reseñas Reales de Clientes Reales">Real Reviews From Real Drivers</h2>
     </div>
     <div class="testi-carousel" id="testiCarousel">
       <div class="testi-viewport">
         <div class="testi-track" id="testiTrack">
           <div class="testi-card">
             <div class="stars">★★★★★</div>
-            <p>"Arrived quicker than expected, kept us informed, and provided cheerful, professional service. He also gave great advice for me and my dad."</p>
+            <p data-i18n-es='"Llegó más rápido de lo esperado, nos mantuvo informados y nos dio un servicio profesional y con buena actitud. También nos dio buenos consejos a mi papá y a mí."'>"Arrived quicker than expected, kept us informed, and provided cheerful, professional service. He also gave great advice for me and my dad."</p>
             <div class="testi-user">
               <h4>Joan L.</h4>
             </div>
           </div>
           <div class="testi-card">
             <div class="stars">★★★★★</div>
-            <p>"Wally arrived 30 minutes before the promised time and got us off the road and into the service center quickly. Excellent service from start to finish."</p>
+            <p data-i18n-es='"Wally llegó 30 minutos antes de lo prometido y nos sacó del camino rápido, llevándonos al taller de servicio. Excelente servicio de principio a fin."'>"Wally arrived 30 minutes before the promised time and got us off the road and into the service center quickly. Excellent service from start to finish."</p>
             <div class="testi-user">
               <h4>Koko R.</h4>
             </div>
           </div>
           <div class="testi-card">
             <div class="stars">★★★★★</div>
-            <p>"NK Towing is excellent. They responded quickly and had a truck to me within 20 minutes."</p>
+            <p data-i18n-es='"NK Towing es excelente. Respondieron rápido y tuve una grúa conmigo en menos de 20 minutos."'>"NK Towing is excellent. They responded quickly and had a truck to me within 20 minutes."</p>
             <div class="testi-user">
               <h4>Ryan D.</h4>
             </div>
           </div>
           <div class="testi-card">
             <div class="stars">★★★★★</div>
-            <p>"Professional, courteous, and reassuring. He made us feel safe on the side of the interstate while changing our flat tire late at night."</p>
+            <p data-i18n-es='"Profesional, atento y tranquilizador. Nos hizo sentir seguros a un lado de la carretera mientras cambiaba nuestra llanta ponchada ya tarde en la noche."'>"Professional, courteous, and reassuring. He made us feel safe on the side of the interstate while changing our flat tire late at night."</p>
             <div class="testi-user">
               <h4>Kathleen</h4>
             </div>
           </div>
           <div class="testi-card">
             <div class="stars">★★★★★</div>
-            <p>"John was professional and prompt. His base access made it easy to get help when we needed it."</p>
+            <p data-i18n-es='"John fue profesional y puntual. Su acceso a la base militar hizo que fuera fácil conseguir ayuda cuando la necesitábamos."'>"John was professional and prompt. His base access made it easy to get help when we needed it."</p>
             <div class="testi-user">
               <h4>Renee</h4>
             </div>
           </div>
         </div>
       </div>
-      <button class="testi-arrow testi-prev" id="testiPrev" aria-label="Previous review"><i class="fa-solid fa-chevron-left"></i></button>
-      <button class="testi-arrow testi-next" id="testiNext" aria-label="Next review"><i class="fa-solid fa-chevron-right"></i></button>
+      <button class="testi-arrow testi-prev" id="testiPrev" aria-label="Previous review" data-i18n-es-aria-label="Reseña anterior"><i class="fa-solid fa-chevron-left"></i></button>
+      <button class="testi-arrow testi-next" id="testiNext" aria-label="Next review" data-i18n-es-aria-label="Siguiente reseña"><i class="fa-solid fa-chevron-right"></i></button>
     </div>
-    <div class="testi-dots" id="testiDots">
-      <button class="testi-dot active" data-index="0" aria-label="Show review 1"></button>
-      <button class="testi-dot" data-index="1" aria-label="Show review 2"></button>
-      <button class="testi-dot" data-index="2" aria-label="Show review 3"></button>
-      <button class="testi-dot" data-index="3" aria-label="Show review 4"></button>
-      <button class="testi-dot" data-index="4" aria-label="Show review 5"></button>
+    <div class="testi-controls">
+      <div class="testi-dots" id="testiDots">
+        <button class="testi-dot active" data-index="0" aria-label="Show review 1" data-i18n-es-aria-label="Mostrar reseña 1"></button>
+        <button class="testi-dot" data-index="1" aria-label="Show review 2" data-i18n-es-aria-label="Mostrar reseña 2"></button>
+        <button class="testi-dot" data-index="2" aria-label="Show review 3" data-i18n-es-aria-label="Mostrar reseña 3"></button>
+        <button class="testi-dot" data-index="3" aria-label="Show review 4" data-i18n-es-aria-label="Mostrar reseña 4"></button>
+        <button class="testi-dot" data-index="4" aria-label="Show review 5" data-i18n-es-aria-label="Mostrar reseña 5"></button>
+      </div>
+      <button class="testi-pause" id="testiPauseToggle" type="button" aria-label="Pause testimonial rotation" aria-pressed="false"><i class="fa-solid fa-pause" aria-hidden="true"></i></button>
     </div>
   </div>
 </section>
@@ -821,76 +864,76 @@
 <section class="contact" id="contact">
   <div class="container">
     <div>
-      <div class="eyebrow">Contact Us</div>
-      <h2>24/7 Towing Support, Ready When You Need It</h2>
-      <p class="lead">Fill out the form below with your situation and location, and our dispatch team will reach out right away. For emergencies, please call us directly.</p>
+      <div class="eyebrow" data-i18n-es="Contáctanos">Contact Us</div>
+      <h2 data-i18n-es="Soporte de Grúa las 24 Horas, Listo Cuando Nos Necesites">24/7 Towing Support, Ready When You Need It</h2>
+      <p class="lead" data-i18n-es="Llena el formulario de abajo con tu situación y ubicación, y nuestro equipo de despacho te contactará de inmediato. Para emergencias, mejor llámanos directamente.">Fill out the form below with your situation and location, and our dispatch team will reach out right away. For emergencies, please call us directly.</p>
       <form class="form-grid" id="contactForm">
         <input type="hidden" name="_subject" value="New Service Request — NK Towing Website">
         <input type="hidden" name="_template" value="table">
         <input type="hidden" name="_captcha" value="false">
         <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
         <div>
-          <label for="cf-name">Full Name*</label>
-          <input id="cf-name" name="name" type="text" required placeholder="Jane Smith">
+          <label for="cf-name" data-i18n-es="Nombre Completo*">Full Name*</label>
+          <input id="cf-name" name="name" type="text" required placeholder="Jane Smith" data-i18n-es-placeholder="Juana Pérez">
         </div>
         <div>
-          <label for="cf-phone">Phone Number*</label>
+          <label for="cf-phone" data-i18n-es="Número de Teléfono*">Phone Number*</label>
           <input id="cf-phone" name="phone" type="tel" required placeholder="(760) 555-0100">
         </div>
         <div>
-          <label for="cf-location">Current Location*</label>
-          <input id="cf-location" name="location" type="text" required placeholder="Street, cross street, or landmark">
+          <label for="cf-location" data-i18n-es="Ubicación Actual*">Current Location*</label>
+          <input id="cf-location" name="location" type="text" required placeholder="Street, cross street, or landmark" data-i18n-es-placeholder="Calle, cruce de calles, o algún punto de referencia">
         </div>
         <div>
-          <label for="cf-service">Service Needed*</label>
+          <label for="cf-service" data-i18n-es="Servicio Que Necesitas*">Service Needed*</label>
           <select id="cf-service" name="service" required>
-            <option value="">Select a service</option>
-            <option>Towing</option>
-            <option>Roadside Assistance</option>
-            <option>Winch-Out / Recovery</option>
-            <option>Fuel Delivery</option>
-            <option>Lockout Service</option>
-            <option>Other</option>
+            <option value="" data-i18n-es="Selecciona un servicio">Select a service</option>
+            <option data-i18n-es="Grúa">Towing</option>
+            <option data-i18n-es="Asistencia Vial">Roadside Assistance</option>
+            <option data-i18n-es="Rescate con Malacate / Recuperación">Winch-Out / Recovery</option>
+            <option data-i18n-es="Entrega de Combustible">Fuel Delivery</option>
+            <option data-i18n-es="Servicio de Apertura de Autos">Lockout Service</option>
+            <option data-i18n-es="Otro">Other</option>
           </select>
         </div>
         <div class="full">
-          <label for="cf-vehicle">Vehicle Make, Model &amp; Year</label>
-          <input id="cf-vehicle" name="vehicle" type="text" placeholder="e.g. 2019 Honda Civic">
+          <label for="cf-vehicle" data-i18n-es="Marca, Modelo y Año del Vehículo">Vehicle Make, Model &amp; Year</label>
+          <input id="cf-vehicle" name="vehicle" type="text" placeholder="e.g. 2019 Honda Civic" data-i18n-es-placeholder="ej. Honda Civic 2019">
         </div>
         <div class="full">
-          <label for="cf-details">Additional Details</label>
-          <textarea id="cf-details" name="details" rows="4" placeholder="Tell us what happened"></textarea>
+          <label for="cf-details" data-i18n-es="Detalles Adicionales">Additional Details</label>
+          <textarea id="cf-details" name="details" rows="4" placeholder="Tell us what happened" data-i18n-es-placeholder="Cuéntanos qué pasó"></textarea>
         </div>
         <div class="full">
-          <button type="submit" class="btn btn-orange" id="contactSubmitBtn"><i class="fa-solid fa-paper-plane"></i> Submit Request</button>
-          <p id="contactFormStatus" style="margin-top:14px;font-size:.9rem;display:none;"></p>
+          <button type="submit" class="btn btn-orange" id="contactSubmitBtn" data-i18n-es='<i class="fa-solid fa-paper-plane"></i> Enviar Solicitud'><i class="fa-solid fa-paper-plane"></i> Submit Request</button>
+          <p id="contactFormStatus" role="status" aria-live="polite" style="margin-top:14px;font-size:.9rem;display:none;"></p>
         </div>
       </form>
     </div>
     <div class="contact-info-card">
-      <h3>Get In Touch</h3>
+      <h3 data-i18n-es="Ponte en Contacto">Get In Touch</h3>
       <div class="contact-info-item">
         <i class="fa-solid fa-phone"></i>
-        <div><h4>Dispatch, Call Anytime 24/7</h4><span>(760) 722-9262</span></div>
+        <div><h4 data-i18n-es="Despacho, Llama Cuando Sea, 24/7">Dispatch, Call Anytime 24/7</h4><span>(760) 722-9262</span></div>
       </div>
       <div class="contact-info-item">
         <i class="fa-solid fa-warehouse"></i>
-        <div><h4>Oceanside Impound Lot</h4><span>(760) 231-5092<br>270 Via Del Norte, Oceanside, CA 92058</span></div>
+        <div><h4 data-i18n-es="Corralón de Oceanside">Oceanside Impound Lot</h4><span>(760) 231-5092<br>270 Via Del Norte, Oceanside, CA 92058</span></div>
       </div>
       <div class="contact-info-item">
         <i class="fa-solid fa-envelope"></i>
-        <div><h4>Email</h4><span>NKtow.dispatch@gmail.com</span></div>
+        <div><h4 data-i18n-es="Correo Electrónico">Email</h4><span>NKtow.dispatch@gmail.com</span></div>
       </div>
       <div class="contact-info-item">
         <i class="fa-solid fa-location-dot"></i>
-        <div><h4>Based In</h4><span>451 Olive Ave, Vista, CA 92083</span></div>
+        <div><h4 data-i18n-es="Ubicados En">Based In</h4><span>451 Olive Ave, Vista, CA 92083</span></div>
       </div>
       <div class="contact-info-item">
         <i class="fa-solid fa-clock"></i>
-        <div><h4>Hours</h4><span>Dispatch available 24/7 &mdash; Office hours 9am&ndash;5pm</span></div>
+        <div><h4 data-i18n-es="Horario">Hours</h4><span data-i18n-es="Despacho disponible las 24 horas &mdash; Horario de oficina 9am&ndash;5pm">Dispatch available 24/7 &mdash; Office hours 9am&ndash;5pm</span></div>
       </div>
       <div class="contact-map">
-        <iframe src="https://www.google.com/maps?q=451+Olive+Ave,+Vista,+CA+92083&output=embed" width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="NK Towing location map"></iframe>
+        <iframe src="https://www.google.com/maps?q=451+Olive+Ave,+Vista,+CA+92083&output=embed" width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="NK Towing location map" data-i18n-es-title="Mapa de ubicación de NK Towing"></iframe>
       </div>
     </div>
   </div>
@@ -900,80 +943,81 @@
 <section class="careers" id="careers">
   <div class="container">
     <div class="section-head center">
-      <div class="eyebrow" style="justify-content:center;">Careers</div>
-      <h2>Join Our Team</h2>
-      <p class="careers-intro">NK Towing is always looking for reliable, hardworking drivers and dispatchers to join our growing team. If you take pride in your work and want to be part of a local, family-run company, we'd love to meet you.</p>
+      <div class="eyebrow" style="justify-content:center;" data-i18n-es="Empleos">Careers</div>
+      <h2 data-i18n-es="Únete a Nuestro Equipo">Join Our Team</h2>
+      <p class="careers-intro" data-i18n-es="NK Towing siempre está buscando choferes y despachadores confiables y trabajadores para unirse a nuestro equipo, que sigue creciendo. Si te sientes orgulloso de tu trabajo y quieres ser parte de una compañía local y familiar, nos encantaría conocerte.">NK Towing is always looking for reliable, hardworking drivers and dispatchers to join our growing team. If you take pride in your work and want to be part of a local, family-run company, we'd love to meet you.</p>
     </div>
     <div class="careers-grid">
       <div class="careers-quals">
-        <h3>What We're Looking For</h3>
+        <h3 data-i18n-es="Lo Que Buscamos">What We're Looking For</h3>
         <ul class="qual-list">
-          <li><i class="fa-solid fa-circle-check"></i>No prior accidents in the past 3 years (preferred)</li>
-          <li><i class="fa-solid fa-circle-check"></i>Clean driving record</li>
-          <li><i class="fa-solid fa-circle-check"></i>Active driver's license</li>
-          <li><i class="fa-solid fa-circle-check"></i>21+ years of age for driver positions</li>
-          <li><i class="fa-solid fa-circle-check"></i>18+ years of age for dispatch positions</li>
-          <li><i class="fa-solid fa-circle-check"></i>No felonies within the previous 7 years</li>
-          <li><i class="fa-solid fa-circle-check"></i>Additional requirements explained during interview &amp; onboarding</li>
+          <li><i class="fa-solid fa-circle-check"></i><span data-i18n-es="Sin accidentes en los últimos 3 años (de preferencia)">No prior accidents in the past 3 years (preferred)</span></li>
+          <li><i class="fa-solid fa-circle-check"></i><span data-i18n-es="Historial de manejo limpio">Clean driving record</span></li>
+          <li><i class="fa-solid fa-circle-check"></i><span data-i18n-es="Licencia de manejo vigente">Active driver's license</span></li>
+          <li><i class="fa-solid fa-circle-check"></i><span data-i18n-es="21 años o más para puestos de chofer">21+ years of age for driver positions</span></li>
+          <li><i class="fa-solid fa-circle-check"></i><span data-i18n-es="18 años o más para puestos de despacho">18+ years of age for dispatch positions</span></li>
+          <li><i class="fa-solid fa-circle-check"></i><span data-i18n-es="Sin delitos graves en los últimos 7 años">No felonies within the previous 7 years</span></li>
+          <li><i class="fa-solid fa-circle-check"></i><span data-i18n-es="Se explican más requisitos durante la entrevista y la capacitación inicial">Additional requirements explained during interview &amp; onboarding</span></li>
         </ul>
       </div>
       <div class="careers-apply">
-        <h3>How To Apply</h3>
-        <p>Applications are accepted in person at our Vista yard. Stop by during office hours to fill one out and meet the team.</p>
+        <h3 data-i18n-es="Cómo Aplicar">How To Apply</h3>
+        <p data-i18n-es="Las solicitudes se reciben en persona en nuestro patio en Vista. Pasa durante el horario de oficina para llenar una y conocer al equipo.">Applications are accepted in person at our Vista yard. Stop by during office hours to fill one out and meet the team.</p>
         <div class="contact-info-item">
           <i class="fa-solid fa-location-dot"></i>
-          <div><h4>Apply In Person</h4><span>451 Olive Ave, Vista, CA 92083</span></div>
+          <div><h4 data-i18n-es="Aplica en Persona">Apply In Person</h4><span>451 Olive Ave, Vista, CA 92083</span></div>
         </div>
         <div class="contact-info-item">
           <i class="fa-solid fa-clock"></i>
-          <div><h4>Office Hours</h4><span>Monday&ndash;Friday, 9am&ndash;5pm</span></div>
+          <div><h4 data-i18n-es="Horario de Oficina">Office Hours</h4><span data-i18n-es="Lunes a viernes, 9am&ndash;5pm">Monday&ndash;Friday, 9am&ndash;5pm</span></div>
         </div>
         <div class="contact-info-item">
           <i class="fa-solid fa-phone"></i>
-          <div><h4>Questions?</h4><span>(760) 722-9262</span></div>
+          <div><h4 data-i18n-es="¿Preguntas?">Questions?</h4><span>(760) 722-9262</span></div>
         </div>
       </div>
     </div>
   </div>
 </section>
+</main>
 
 <!-- Footer -->
 <footer>
   <div class="container footer-grid">
     <div>
-      <div class="footer-logo"><img src="nk-logo.png" alt="NK Towing logo"></div>
-      <div class="footer-slogan">Get Hooked On Us</div>
-      <p class="desc">Locally owned, 24/7 towing and roadside assistance serving Oceanside, Vista, and North San Diego County up to the Orange County line.</p>
+      <div class="footer-logo"><img src="nk-logo.png" alt="NK Towing logo" data-i18n-es-alt="Logo de NK Towing"></div>
+      <div class="footer-slogan" data-i18n-es="Engánchate Con Nosotros">Get Hooked On Us</div>
+      <p class="desc" data-i18n-es="Negocio local de grúas y asistencia vial las 24 horas, sirviendo a Oceanside, Vista y el norte del condado de San Diego hasta el límite con el condado de Orange.">Locally owned, 24/7 towing and roadside assistance serving Oceanside, Vista, and North San Diego County up to the Orange County line.</p>
       <div class="socials">
-        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-        <a href="#"><i class="fa-brands fa-instagram"></i></a>
-        <a href="#"><i class="fa-brands fa-google"></i></a>
+        <a href="#" aria-label="NK Towing on Facebook" data-i18n-es-aria-label="NK Towing en Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+        <a href="#" aria-label="NK Towing on Instagram" data-i18n-es-aria-label="NK Towing en Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+        <a href="#" aria-label="NK Towing on Google" rel="noopener" data-i18n-es-aria-label="NK Towing en Google"><i class="fa-brands fa-google" aria-hidden="true"></i></a>
       </div>
     </div>
     <div>
-      <h4>Quick Links</h4>
+      <h4 data-i18n-es="Enlaces Rápidos">Quick Links</h4>
       <ul>
-        <li><a href="#top">Home</a></li>
-        <li><a href="#lookup">Vehicle Locator</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#careers">Careers</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#top" data-i18n-es="Inicio">Home</a></li>
+        <li><a href="#lookup" data-i18n-es="Localizador de Vehículos">Vehicle Locator</a></li>
+        <li><a href="#services" data-i18n-es="Servicios">Services</a></li>
+        <li><a href="#careers" data-i18n-es="Empleos">Careers</a></li>
+        <li><a href="#contact" data-i18n-es="Contacto">Contact</a></li>
       </ul>
     </div>
     <div>
-      <h4>Services</h4>
+      <h4 data-i18n-es="Servicios">Services</h4>
       <ul>
-        <li><a href="#services">Towing</a></li>
-        <li><a href="#services">Roadside Assistance</a></li>
-        <li><a href="#services">Winch-Outs</a></li>
-        <li><a href="#services">Fuel Delivery</a></li>
+        <li><a href="#services" data-i18n-es="Grúa">Towing</a></li>
+        <li><a href="#services" data-i18n-es="Asistencia Vial">Roadside Assistance</a></li>
+        <li><a href="#services" data-i18n-es="Rescate con Malacate">Winch-Outs</a></li>
+        <li><a href="#services" data-i18n-es="Entrega de Combustible">Fuel Delivery</a></li>
       </ul>
     </div>
     <div>
-      <h4>Contact</h4>
+      <h4 data-i18n-es="Contacto">Contact</h4>
       <ul>
-        <li><i class="fa-solid fa-phone" style="color:var(--orange);margin-right:8px;"></i>Dispatch: (760) 722-9262</li>
-        <li><i class="fa-solid fa-warehouse" style="color:var(--orange);margin-right:8px;"></i>Impound: (760) 231-5092</li>
+        <li><i class="fa-solid fa-phone" style="color:var(--orange);margin-right:8px;"></i><span data-i18n-es="Despacho: (760) 722-9262">Dispatch: (760) 722-9262</span></li>
+        <li><i class="fa-solid fa-warehouse" style="color:var(--orange);margin-right:8px;"></i><span data-i18n-es="Corralón: (760) 231-5092">Impound: (760) 231-5092</span></li>
         <li><i class="fa-solid fa-envelope" style="color:var(--orange);margin-right:8px;"></i>NKtow.dispatch@gmail.com</li>
         <li><i class="fa-solid fa-location-dot" style="color:var(--orange);margin-right:8px;"></i>451 Olive Ave, Vista, CA 92083</li>
         <li><i class="fa-solid fa-location-dot" style="color:var(--orange);margin-right:8px;"></i>270 Via Del Norte, Oceanside, CA 92058</li>
@@ -981,12 +1025,58 @@
     </div>
   </div>
   <div class="container footer-bottom">
-    <span>&copy; 2026 NK Towing. All rights reserved.</span>
-    <span>Oceanside &amp; Vista, CA &mdash; CA #330075</span>
+    <span data-i18n-es="&copy; 2026 NK Towing. Todos los derechos reservados.">&copy; 2026 NK Towing. All rights reserved.</span>
+    <span data-i18n-es="Oceanside y Vista, CA &mdash; Lic. CA #330075">Oceanside &amp; Vista, CA &mdash; CA #330075</span>
   </div>
 </footer>
 
 <script>
+  // Language toggle (EN / ES) - swaps text/attributes tagged with data-i18n-es-*
+  try {
+    var LANG_KEY = 'nkLang';
+    var currentLang = 'en';
+    try { currentLang = localStorage.getItem(LANG_KEY) || 'en'; } catch (lsErr) {}
+    var langEnBtn = document.getElementById('langEnBtn');
+    var langEsBtn = document.getElementById('langEsBtn');
+    var I18N_ATTRS = ['alt', 'placeholder', 'aria-label', 'title'];
+
+    function applyLang(lang) {
+      var textEls = document.querySelectorAll('[data-i18n-es]');
+      for (var i = 0; i < textEls.length; i++) {
+        var el = textEls[i];
+        if (!el.hasAttribute('data-i18n-en')) {
+          el.setAttribute('data-i18n-en', el.innerHTML);
+        }
+        el.innerHTML = lang === 'es' ? el.getAttribute('data-i18n-es') : el.getAttribute('data-i18n-en');
+      }
+      for (var a = 0; a < I18N_ATTRS.length; a++) {
+        var attr = I18N_ATTRS[a];
+        var attrEls = document.querySelectorAll('[data-i18n-es-' + attr + ']');
+        for (var j = 0; j < attrEls.length; j++) {
+          var el2 = attrEls[j];
+          var enKey = 'data-i18n-en-' + attr;
+          if (!el2.hasAttribute(enKey)) {
+            el2.setAttribute(enKey, el2.getAttribute(attr) || '');
+          }
+          el2.setAttribute(attr, lang === 'es' ? el2.getAttribute('data-i18n-es-' + attr) : el2.getAttribute(enKey));
+        }
+      }
+      document.documentElement.setAttribute('lang', lang === 'es' ? 'es' : 'en');
+      if (langEnBtn) { langEnBtn.classList.toggle('active', lang === 'en'); langEnBtn.setAttribute('aria-pressed', lang === 'en' ? 'true' : 'false'); }
+      if (langEsBtn) { langEsBtn.classList.toggle('active', lang === 'es'); langEsBtn.setAttribute('aria-pressed', lang === 'es' ? 'true' : 'false'); }
+      currentLang = lang;
+      window.nkCurrentLang = lang;
+      try { localStorage.setItem(LANG_KEY, lang); } catch (lsErr2) {}
+    }
+
+    if (langEnBtn) langEnBtn.addEventListener('click', function () { applyLang('en'); });
+    if (langEsBtn) langEsBtn.addEventListener('click', function () { applyLang('es'); });
+
+    applyLang(currentLang);
+  } catch (langErr) {
+    console.error('Language toggle error:', langErr);
+  }
+
   // Mobile nav toggle
   try {
     var menuToggle = document.getElementById('menuToggle');
@@ -1024,8 +1114,14 @@
       var testiDots = document.querySelectorAll('#testiDots .testi-dot');
       var testiPrev = document.getElementById('testiPrev');
       var testiNext = document.getElementById('testiNext');
+      var testiPauseBtn = document.getElementById('testiPauseToggle');
       var testiIndex = 0;
       var testiTimer = null;
+      var testiPaused = false;
+      var prefersReducedMotion = false;
+      try {
+        prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      } catch (pmErr) {}
 
       function goToTesti(i) {
         testiIndex = (i + testiCards.length) % testiCards.length;
@@ -1037,8 +1133,31 @@
         }
       }
       function startTestiAuto() {
+        if (testiPaused) return;
         if (testiTimer) clearInterval(testiTimer);
         testiTimer = setInterval(function () { goToTesti(testiIndex + 1); }, 6000);
+      }
+      function setPaused(paused) {
+        testiPaused = paused;
+        if (testiPaused) {
+          if (testiTimer) clearInterval(testiTimer);
+          testiTimer = null;
+        } else {
+          startTestiAuto();
+        }
+        if (testiPauseBtn) {
+          testiPauseBtn.innerHTML = testiPaused
+            ? '<i class="fa-solid fa-play" aria-hidden="true"></i>'
+            : '<i class="fa-solid fa-pause" aria-hidden="true"></i>';
+          var pauseLabels = (window.nkCurrentLang === 'es')
+            ? { pause: 'Pausar rotación de reseñas', resume: 'Reanudar rotación de reseñas' }
+            : { pause: 'Pause testimonial rotation', resume: 'Resume testimonial rotation' };
+          testiPauseBtn.setAttribute('aria-label', testiPaused ? pauseLabels.resume : pauseLabels.pause);
+          testiPauseBtn.setAttribute('aria-pressed', testiPaused ? 'true' : 'false');
+        }
+      }
+      if (testiPauseBtn) {
+        testiPauseBtn.addEventListener('click', function () { setPaused(!testiPaused); });
       }
       if (testiPrev) {
         testiPrev.addEventListener('click', function () { goToTesti(testiIndex - 1); startTestiAuto(); });
@@ -1053,7 +1172,11 @@
         });
       }
       testiCarousel.addEventListener('mouseenter', function () { if (testiTimer) clearInterval(testiTimer); });
-      testiCarousel.addEventListener('mouseleave', startTestiAuto);
+      testiCarousel.addEventListener('mouseleave', function () { if (!testiPaused) startTestiAuto(); });
+
+      if (prefersReducedMotion) {
+        setPaused(true);
+      }
 
       var testiTouchStartX = 0;
       testiCarousel.addEventListener('touchstart', function (e) {
@@ -1091,7 +1214,11 @@
         if (!lookupLoaded) {
           lookupFallback.classList.add('lookup-emphasize');
           if (lookupFallbackText) {
-            lookupFallbackText.textContent = "Having trouble viewing the locator above? Open it directly here:";
+            var lft_en = "Having trouble viewing the locator above? Open it directly here:";
+            var lft_es = "¿Problemas para ver el localizador de arriba? Ábrelo directamente aquí:";
+            lookupFallbackText.setAttribute('data-i18n-en', lft_en);
+            lookupFallbackText.setAttribute('data-i18n-es', lft_es);
+            lookupFallbackText.textContent = (window.nkCurrentLang === 'es') ? lft_es : lft_en;
           }
         }
       }, 4000);
@@ -1110,9 +1237,12 @@
 
       contactForm.addEventListener('submit', function (e) {
         e.preventDefault();
+        var isEs = window.nkCurrentLang === 'es';
         if (submitBtn) {
           submitBtn.disabled = true;
-          submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
+          submitBtn.innerHTML = isEs
+            ? '<i class="fa-solid fa-spinner fa-spin"></i> Enviando...'
+            : '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
         }
         if (statusEl) statusEl.style.display = 'none';
 
@@ -1125,14 +1255,18 @@
             if (!response.ok) throw new Error('Request failed');
             contactForm.reset();
             if (statusEl) {
-              statusEl.textContent = "Thanks - we've received your request and will reach out shortly. For urgent, right-now emergencies, please call us directly.";
+              statusEl.textContent = isEs
+                ? "Gracias - ya recibimos tu solicitud y te contactaremos pronto. Si es una emergencia urgente, mejor llámanos directamente."
+                : "Thanks - we've received your request and will reach out shortly. For urgent, right-now emergencies, please call us directly.";
               statusEl.style.color = '#1a7f4b';
               statusEl.style.display = 'block';
             }
           })
           .catch(function () {
             if (statusEl) {
-              statusEl.textContent = 'Something went wrong sending your request. Please call us directly at (760) 722-9262.';
+              statusEl.textContent = isEs
+                ? 'Hubo un problema al enviar tu solicitud. Por favor llámanos directamente al (760) 722-9262.'
+                : 'Something went wrong sending your request. Please call us directly at (760) 722-9262.';
               statusEl.style.color = '#c0392b';
               statusEl.style.display = 'block';
             }
